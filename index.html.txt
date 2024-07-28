@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시음 노트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .category {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .category a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        .category a:hover {
+            background-color: #333;
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group .level {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group .level input {
+            width: calc(25% - 10px);
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>시음 노트</h1>
+        <div class="category">
+            <a href="#" onclick="showCategory('와인')">와인</a>
+            <a href="#" onclick="showCategory('위스키')">위스키</a>
+            <a href="#" onclick="showCategory('니혼슈')">니혼슈</a>
+            <a href="#" onclick="showCategory('칵테일')">칵테일</a>
+            <a href="#" onclick="showCategory('맥주')">맥주</a>
+            <a href="#" onclick="showCategory('기타주류')">기타주류</a>
+        </div>
+
+        <div id="content">
+            <h2>시음 노트 작성</h2>
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="type">품종</label>
+                <input type="text" id="type" name="type">
+            </div>
+            <div class="form-group">
+                <label for="region">지역</label>
+                <input type="text" id="region" name="region">
+            </div>
+            <div class="form-group">
+                <label for="date">마신 날짜</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="companions">같이 마신 사람</label>
+                <input type="text" id="companions" name="companions">
+            </div>
+            <div class="form-group">
+                <label for="aroma">향</label>
+                <textarea id="aroma" name="aroma"></textarea>
+                <button onclick="suggestAromas()">향 추천</button>
+            </div>
+            <div class="form-group">
+                <label>당도, 산도, 탄닌, 바디</label>
+                <div class="level">
+                    <input type="number" id="sweetness" name="sweetness" min="1" max="10" placeholder="당도">
+                    <input type="number" id="acidity" name="acidity" min="1" max="10" placeholder="산도">
+                    <input type="number" id="tannin" name="tannin" min="1" max="10" placeholder="탄닌">
+                    <input type="number" id="body" name="body" min="1" max="10" placeholder="바디">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="notes">감상</label>
+                <textarea id="notes" name="notes"></textarea>
+            </div>
+            <button>녹음</button>
+            <button>저장</button>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            document.getElementById('content').innerHTML = '<h2>' + category + ' 시음 노트 작성</h2>';
+            // 추가적인 로직을 여기에 구현하세요
+        }
+
+        function suggestAromas() {
+            const type = document.getElementById('type').value;
+            const aromaTextarea = document.getElementById('aroma');
+            if (type.toLowerCase() === '와인') {
+                aromaTextarea.value = '과일향, 꽃향, 나무향';
+            } else {
+                aromaTextarea.value = '다양한 향을 입력하세요';
+            }
+        }
+    </script>
+</body>
+</html>
